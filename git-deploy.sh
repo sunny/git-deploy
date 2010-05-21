@@ -18,8 +18,8 @@
 
 ORIGIN=`git config --get remote.origin.url`
 
-HOST=`echo $ORIGIN | sed s/:.*//`
-DIR=`echo $ORIGIN | sed s/.*://`
+HOST=${ORIGIN%%:*}
+DIR=${ORIGIN#*:}
 ENV=$1
 [ "$ENV" == "" ] && ENV=dev
 
