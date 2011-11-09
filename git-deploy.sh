@@ -27,7 +27,7 @@ DIR=${REMOTE_URL#*:}
 ENV_DIR="${DIR%/*}"/$ENV
 
 
-echo "** Sending $BRANCH"
+echo "* Sending $BRANCH"
 git push origin $BRANCH
 
 ssh -T $HOST "
@@ -45,26 +45,20 @@ if [ $BRANCH != \$CURRENT_BRANCH ]; then
 
   # Create remote tracked branch
   if [ \$HAS_BRANCH != 1 ]; then
-    echo '** Creating $BRANCH branch in $ENV'
+    echo '* Creating $BRANCH branch in $ENV'
     git checkout -t $REMOTE/$BRANCH
 
   # Switch to it
   else
-    echo '** Switching to $BRANCH branch in $ENV'
+    echo '* Switching to $BRANCH branch in $ENV'
     git checkout $BRANCH --
   fi
 fi
 
 # Pull
-echo '** Pulling $BRANCH in $ENV'
+echo '* Pulling $BRANCH in $ENV'
 git merge $REMOTE/$BRANCH --ff-only
-
-# For Passenger-like apps
-if [ -f 'tmp/restart.txt' ]; then
-  echo '** Restarting'
-  touch tmp/restart.txt
-fi
 "
 
-# For local extra deploy scripts (database)
+
 [ -f __scripts/deploy ] && __scripts/deploy "$ENV"
