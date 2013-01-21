@@ -1,19 +1,6 @@
 #!/bin/bash
 # Git push then pull over ssh
-#
-# Supposing you have these environments on the same ssh git remote:
-#   project/origin.git
-#   project/dev/.git
-#   project/prod/.git
-#
-# You can then push the current branch and pull it in dev/ and prod/ by doing:
-#   $ git deploy dev
-#   $ git deploy prod
-#
-# Installation with ~/bin in your $PATH:
-#   $ curl http://gist.github.com/raw/407687/git-deploy.sh > ~/bin/git-deploy
-#   $ chmod +x ~/bin/git-deploy
-#   $ git config --global alias.deploy '!git-deploy'
+# https://github.com/sunny/git-deploy
 
 set -e
 
