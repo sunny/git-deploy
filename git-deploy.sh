@@ -26,9 +26,12 @@ HOST=${REMOTE_URL%%:*}
 DIR=${REMOTE_URL#*:}
 ENV_DIR="${DIR%/*}"/$ENV
 
+echo "* Tag $ENV"
+git tag -f $ENV
 
 echo "* Sending $BRANCH"
-git push origin $BRANCH
+git push $REMOTE $BRANCH
+git push $REMOTE -f --tags
 
 ssh -T $HOST "
 
