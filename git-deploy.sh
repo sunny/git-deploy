@@ -27,7 +27,7 @@ info "Tag $ENV"
 git tag -f $ENV
 
 info "Sending $BRANCH"
-git push $REMOTE $BRANCH
+git push $REMOTE HEAD
 git push $REMOTE -f --tags
 
 ssh -T $HOST "
