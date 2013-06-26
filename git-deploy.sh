@@ -54,12 +54,6 @@ fi
 # Pull
 echo '** Pulling $BRANCH in $ENV'
 git merge $REMOTE/$BRANCH --ff-only
-
-# For Passenger-like apps
-if [ -f 'tmp/restart.txt' ]; then
-  echo '** Restarting'
-  touch tmp/restart.txt
-fi
 "
 
 # For compile scripts (Compass, CoffeeScript, etc…)
