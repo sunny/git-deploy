@@ -23,12 +23,8 @@ HOST=${REMOTE_URL%%:*}
 DIR=${REMOTE_URL#*:}
 ENV_DIR="${DIR%/*}"/$ENV
 
-info "Tag $ENV"
-git tag -f $ENV
-
 info "Sending $BRANCH"
 git push $REMOTE HEAD
-git push $REMOTE -f --tags
 
 ssh -T $HOST "
 
@@ -78,3 +74,7 @@ if [ -f __scripts/deploy ]; then
   info "__scripts/deploy $ENV"
   __scripts/deploy "$ENV"
 fi
+
+info "Tag $ENV"
+git tag -f $ENV
+git push -f $REMOTE $ENV
