@@ -41,18 +41,18 @@ if [ $BRANCH != \$CURRENT_BRANCH ]; then
 
   # Create remote tracked branch
   if [ \$HAS_BRANCH != 1 ]; then
-    echo '** Creating $BRANCH branch in $ENV'
+    echo '* Creating $BRANCH branch in $ENV'
     git checkout -t $REMOTE/$BRANCH
 
   # Switch to it
   else
-    echo '** Switching to $BRANCH branch in $ENV'
+    echo '* Switching to $BRANCH branch in $ENV'
     git checkout $BRANCH --
   fi
 fi
 
 # Pull
-echo '** Pulling $BRANCH in $ENV'
+echo '* Pulling $BRANCH in $ENV'
 git merge $REMOTE/$BRANCH --ff-only
 "
 
