@@ -72,3 +72,5 @@ fi
 info "Tag $ENV"
 git tag -f $ENV
 git push -f $REMOTE $ENV
+
+echo "👍"
