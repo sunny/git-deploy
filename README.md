@@ -14,8 +14,10 @@ Supposing you have these environments on the same ssh git remote:
 
 You can then push the current branch and pull it in `dev/` and `prod/` by doing:
 
-    $ git deploy dev
-    $ git deploy prod
+```sh
+$ git deploy dev
+$ git deploy prod
+```
 
 It will guess those folder names based on the `origin` remote.
 
