@@ -25,11 +25,15 @@ Install
 
 Make sure `~/bin` is in your `$PATH`, then:
 
-    $ curl https://raw.github.com/sunny/git-deploy/master/git-deploy.sh > ~/bin/git-deploy
-    $ chmod +x ~/bin/git-deploy
-    $ git config --global alias.deploy '!git-deploy'
+```sh
+$ curl https://raw.github.com/sunny/git-deploy/master/git-deploy.sh > ~/bin/git-deploy
+$ chmod +x ~/bin/git-deploy
+$ git config --global alias.deploy '!git-deploy'
+```
 
 Update
 ------
 
-    $ curl https://raw.github.com/sunny/git-deploy/master/git-deploy.sh > ~/bin/git-deploy
+```sh
+$ curl https://raw.github.com/sunny/git-deploy/master/git-deploy.sh > ~/bin/git-deploy
+```
