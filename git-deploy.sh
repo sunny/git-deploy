@@ -49,11 +49,15 @@ if [ $BRANCH != \$CURRENT_BRANCH ]; then
     echo '* Switching to $BRANCH branch in $ENV'
     git checkout $BRANCH --
   fi
-fi
+
+  # Launch post-merge
+  [ -x .git/hooks/post-merge ] && .git/hooks/post-merge
 
 # Pull
-echo '* Pulling $BRANCH in $ENV'
-git merge $REMOTE/$BRANCH --ff-only
+else
+  echo '* Pulling $BRANCH in $ENV'
+  git merge $REMOTE/$BRANCH --ff-only
+fi
 "
 
 # For compile scripts (Compass, CoffeeScript, etc…)
