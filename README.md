@@ -53,9 +53,9 @@ Hooks
 Other scripts can be launched before and after a deploy by using hooks.
 These files will be called in this order during a deploy if they are executable:
 
-| File name | Local | Remote | Takes the environment as a first parameter
-| --------- | ------ | ------- | -------------- |
-| __scripts/deploy_before | X | | X |
-| .git/hooks/post-merge | | X | |
-| __scripts/compile | | X | X |
-| __scripts/deploy | X | | X |
+| Command | Local | Remote |
+| --------- | ------ | ------- |
+| `__scripts/deploy_before dev` | X | |
+| `.git/hooks/post-merge` | | X |
+| `__scripts/compile dev` | | X |
+| `__scripts/deploy dev` | X | |
