@@ -8,7 +8,7 @@ info(){
   echo -e "* \033[1m""$@""\033[0m"
 }
 
-REMOTE='origin'
+REMOTE=${GIT_DEPLOY_REMOTE:origin} # default remote is called "origin"
 ENV=${1:-dev} # first argument or default to dev
 
 # For local scripts before deploy (knock, for example)
