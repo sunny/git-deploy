@@ -10,6 +10,7 @@ info(){
 
 REMOTE='origin'
 ENV=${1:-dev} # first argument or default to dev
+WEBSITE=${2} # second argument
 
 # For local scripts before deploy (knock, for example)
 if [ -f __scripts/deploy_before ]; then
@@ -69,8 +70,8 @@ fi
 
 # For local extra deploy scripts (database, for example)
 if [ -f __scripts/deploy ]; then
-  info "__scripts/deploy $ENV"
-  __scripts/deploy "$ENV"
+  info "__scripts/deploy $ENV $WEBSITE"
+  __scripts/deploy "$ENV $WEBSITE"
 fi
 
 info "Tag $ENV"
