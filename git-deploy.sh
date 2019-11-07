@@ -19,8 +19,16 @@ fi
 
 BRANCH=`git branch 2> /dev/null | sed -n '/^\*/s/^\* //p'`
 REMOTE_URL=`git config --get remote.$REMOTE.url`
-HOST=${REMOTE_URL%%:*}
-DIR=${REMOTE_URL#*:}
+
+if [[ $string == "ssh://"*":"* ]]; then
+  REMOTE_URL="${REMOTE_URL#ssh://}"
+  HOST="${REMOTE_URL%%/*}"
+  DIR="/${REMOTE_URL#*/}"
+else
+  HOST="${REMOTE_URL%%:*}"
+  DIR="${REMOTE_URL#*:}"
+fi
+
 ENV_DIR="${DIR%/*}"/$ENV
 
 info "Sending $BRANCH"
