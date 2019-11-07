@@ -19,14 +19,25 @@ fi
 
 BRANCH=`git branch 2> /dev/null | sed -n '/^\*/s/^\* //p'`
 REMOTE_URL=`git config --get remote.$REMOTE.url`
-HOST=${REMOTE_URL%%:*}
-DIR=${REMOTE_URL#*:}
+
+if [[ $REMOTE_URL == "ssh://"*":"* ]]; then
+  REMOTE_URL="${REMOTE_URL#ssh://}"
+  HOST="${REMOTE_URL%%/*}"
+  DIR="/${REMOTE_URL#*/}"
+  PORT="${HOST#*:}"
+  HOST="${HOST%%:*}"
+else
+  HOST="${REMOTE_URL%%:*}"
+  DIR="${REMOTE_URL#*:}"
+  PORT="22"
+fi
+
 ENV_DIR="${DIR%/*}"/$ENV
 
 info "Sending $BRANCH"
 git push $REMOTE HEAD
 
-ssh -T $HOST "
+ssh -T $HOST -p $PORT "
 
 set -e
 
@@ -63,7 +74,7 @@ fi
 # For compile scripts (Compass, CoffeeScript, etc…)
 if [ -f __scripts/compile ]; then
   info "__scripts/compile $ENV"
-  ssh -T $HOST "cd $ENV_DIR && __scripts/compile $ENV"
+  ssh -T $HOST -p $PORT "cd $ENV_DIR && __scripts/compile $ENV"
 fi
 
 
