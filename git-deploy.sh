@@ -24,9 +24,12 @@ if [[ $REMOTE_URL == "ssh://"*":"* ]]; then
   REMOTE_URL="${REMOTE_URL#ssh://}"
   HOST="${REMOTE_URL%%/*}"
   DIR="/${REMOTE_URL#*/}"
+  PORT="${HOST#*:}"
+  HOST="${HOST%%:*}"
 else
   HOST="${REMOTE_URL%%:*}"
   DIR="${REMOTE_URL#*:}"
+  PORT="22"
 fi
 
 ENV_DIR="${DIR%/*}"/$ENV
