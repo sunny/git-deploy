@@ -37,7 +37,7 @@ ENV_DIR="${DIR%/*}"/$ENV
 info "Sending $BRANCH"
 git push $REMOTE HEAD
 
-ssh -T $HOST "
+ssh -T $HOST -p $PORT "
 
 set -e
 
@@ -74,7 +74,7 @@ fi
 # For compile scripts (Compass, CoffeeScript, etc…)
 if [ -f __scripts/compile ]; then
   info "__scripts/compile $ENV"
-  ssh -T $HOST "cd $ENV_DIR && __scripts/compile $ENV"
+  ssh -T $HOST -p $PORT "cd $ENV_DIR && __scripts/compile $ENV"
 fi
 
 
